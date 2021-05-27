@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css'
+
+import FavoritesContainer from './FavoritesContainer'
+import CharactersContainer from './CharactersContainer'
+
+class App extends Component {
+
+  state = {
+    favorites: [],
+    characters: []
+  }
+
+  componentDidMount() {
+    fetch('https://star-wars-cafe-api.herokuapp.com/characters')
+      .then(response => response.json())
+      .then(characters => this.setState({ characters }))
+  }
+
+  addFavorite = clickedCharacter => {
+    this.setState({ favorites: [...this.state.favorites, clickedCharacter] })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <FavoritesContainer favorites={ this.state.favorites } />
+        <CharactersContainer
+          characters={ this.state.characters }
+          addFavorite={ this.addFavorite }
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
