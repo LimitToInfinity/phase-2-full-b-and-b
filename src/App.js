@@ -19,9 +19,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FavoritesContainer
-          favorites={ this.state.favorites }
-        />
         <CharactersContainer
           characters={ this.state.characters }
         />
