@@ -2,13 +2,11 @@ import { Component } from 'react'
 
 import './App.css'
 
-import FavoritesContainer from './FavoritesContainer'
 import CharactersContainer from './CharactersContainer'
 
 class App extends Component {
 
   state = {
-    favorites: [],
     characters: []
   }
 
@@ -18,17 +16,14 @@ class App extends Component {
       .then(characters => this.setState({ characters }))
   }
 
-  addFavorite = clickedCharacter => {
-    this.setState({ favorites: [...this.state.favorites, clickedCharacter] })
-  }
-
   render() {
     return (
       <div className="App">
-        <FavoritesContainer favorites={ this.state.favorites } />
+        <FavoritesContainer
+          favorites={ this.state.favorites }
+        />
         <CharactersContainer
           characters={ this.state.characters }
-          addFavorite={ this.addFavorite }
         />
       </div>
     );

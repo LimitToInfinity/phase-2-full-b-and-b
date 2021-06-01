@@ -7,7 +7,6 @@ function CharactersContainer(props) {
       return <CharacterCard
         key={ character.id }
         character={ character }
-        addFavorite={ props.addFavorite }
       />
     })
   }
